@@ -1,0 +1,72 @@
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+ <teiHeader>
+  <fileDesc>
+   <titleStmt>
+    <title>De Bello Gallico</title>
+   </titleStmt>
+<!-- ... -->
+  </fileDesc>
+ </teiHeader>
+ <text>
+  <body>
+   <div type="edition">
+    <div type="textpart" subtype="chapter"
+     n="1" xml:id="ch1">
+     <p n="1" xml:id="c1p1">
+      <seg n="1" xml:id="c1p1s1">Gallia est omnis divisa in partes tres, quarum unam
+             incolunt Belgae, aliam Aquitani, tertiam qui ipsorum lingua Celtae, nostra
+             Galli appellantur.</seg>
+<!-- ... -->
+      <seg n="6" xml:id="c1p1s6">Belgae ab extremis Galliae finibus oriuntur,
+             pertinent ad inferiorem partem fluminis Rheni, spectant in septentrionem et
+             orientem solem.</seg>
+      <seg n="7" xml:id="c1p1s7">Aquitania a Garumna flumine ad Pyrenaeos montes et
+             eam partem Oceani quae est ad Hispaniam pertinet; spectat inter occasum solis
+             et septentriones.]</seg>
+<!-- ... -->
+     </p>
+<!-- ... -->
+    </div>
+<!-- Ch. 2 etc. ... -->
+   </div>
+  </body>
+ </text>
+ <standOff>
+  <listPlace>
+   <place xml:id="Gallia">
+    <placeName xml:lang="la">Gallia</placeName>
+    <placeName xml:lang="en">Gaul</placeName>
+    <idno type="URI">https://pleiades.stoa.org/places/993</idno>
+   </place>
+<!-- ... -->
+  </listPlace>
+ </standOff>
+ <TEI xmlns="http://www.tei-c.org/ns/1.0">
+  <teiHeader>
+<!-- Metadata applying just to the set of annotations -->
+  </teiHeader>
+  <standOff>
+   <listAnnotation>
+    <annotation xml:id="ann01"
+     motivation="linking" target="#Gallia">
+     <respStmt xml:id="ed">
+      <resp>creator</resp>
+      <persName>Fred Editor</persName>
+     </respStmt>
+     <revisionDesc>
+      <change status="created"
+       when="2020-05-21T13:59:00Z" who="#ed"/>
+      <change status="modified"
+       when="2020-05-21T19:48:00Z" who="#ed"/>
+     </revisionDesc>
+     <licence target="http://creativecommons.org/licenses/by/3.0/"/>
+<!-- Gallia in seg 1 -->
+     <ptr target="#string-range(c1p1s1,0,6)"/>
+<!-- Galliae in seg 6 -->
+     <ptr target="#string-range(c1p1s6,19,7)"/>
+    </annotation>
+<!-- ... -->
+   </listAnnotation>
+  </standOff>
+ </TEI>
+</TEI>

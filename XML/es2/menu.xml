@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="example.xsl"?>
+<Menu>
+ <Title>Snacks</Title>
+ <Icecreams>
+ <Icecream>Nutella brownie</Icecream>
+ <Icecream>Blackcurrent</Icecream>
+ </Icecreams>
+ <Beverages>
+ <Beverage>Fresh Mango Shake</Beverage>
+ <Beverage>Cold coffee</Beverage>
+ </Beverages>
+<Title>Starters</Title>
+ <NonvegStarter>
+ <Nonveg>Chilly chicken</Nonveg>
+ <Nonveg>Chicken Urwal</Nonveg>
+ </NonvegStarter>
+ <vegStarter>
+ <veg>Veg Manchurian</veg>
+ <veg>Spring roll</veg>
+ </vegStarter>
+ <Body>This is my snack list.</Body>
+</Menu>

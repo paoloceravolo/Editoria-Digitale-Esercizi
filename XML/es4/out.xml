@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html>
+  <body>
+    <h2>La mia collezione di CD</h2>
+    <table border="1">
+      <tr bgcolor="#9acd32">
+        <th align="left">Titolo</th>
+        <th align="left">Autore</th>
+      </tr>
+      <tr>
+        <td>Empire Burlesque</td>
+        <td>Bob Dylan</td>
+      </tr>
+      <tr>
+        <td>Heil to the Thief</td>
+        <td>Radiohead</td>
+      </tr>
+      <tr>
+        <td>Catartica</td>
+        <td>Marlene Kuntz</td>
+      </tr>
+      <tr>
+        <td>Alterazioni</td>
+        <td>Estra</td>
+      </tr>
+      <tr>
+        <td>Non è per sempre</td>
+        <td>Afterhours</td>
+      </tr>
+      <tr>
+        <td>I milanesi ammazzano il sabato</td>
+        <td>Afterhours</td>
+      </tr>
+    </table>
+  </body>
+</html>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elenco>
+ <cd>
+  <titolo>Empire Burlesque</titolo>
+  <autore>Bob Dylan</autore>
+  <anno>1985</anno>
+  <prezzo>10,50</prezzo>
+ </cd>
+ <cd>
+  <titolo>Heil to the Thief</titolo>
+  <autore>Radiohead</autore>
+  <anno>2003</anno>
+  <prezzo>15,00</prezzo>
+ </cd>
+  <cd>
+  <titolo>Catartica</titolo>
+  <autore>Marlene Kuntz</autore>
+  <anno>1994</anno>
+  <prezzo>10,00</prezzo>
+ </cd>
+<cd>
+  <titolo>Alterazioni</titolo>
+  <autore>Estra</autore>
+  <anno>1997</anno>
+  <prezzo>12,00</prezzo>
+ </cd>
+  <cd>
+  <titolo>Non è per sempre</titolo>
+  <autore>Afterhours</autore>
+  <anno>1999</anno>
+  <prezzo>11,00</prezzo>
+ </cd>
+ <cd>
+  <titolo>I milanesi ammazzano il sabato</titolo>
+  <autore>Afterhours</autore>
+  <anno>2008</anno>
+  <prezzo>13,00</prezzo>
+ </cd>
+</elenco>
