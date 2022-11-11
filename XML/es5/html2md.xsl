@@ -26,4 +26,25 @@
 		<xsl:value-of select="."/>
 	</xsl:template>
 
+	<xsl:template match="blockquote">
+		<xsl:text>> </xsl:text>
+		<xsl:value-of select="."/>
+	</xsl:template>
+
+	<xsl:template match="hr">
+		<xsl:text>---&#10;</xsl:text>
+	</xsl:template>
+
+	<xsl:template match="br">
+		<xsl:text>&#10;</xsl:text>
+	</xsl:template>
+
+	<xsl:template match="a">
+		<xsl:text>[</xsl:text>
+		<xsl:value-of select="." />
+		<xsl:text>](</xsl:text>
+		<xsl:value-of select="@href" />
+		<xsl:text>)</xsl:text>
+	</xsl:template>
+
 </xsl:stylesheet>
