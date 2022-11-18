@@ -1,0 +1,539 @@
+
+# Major Section Heading
+
+## Math
+
+I'll begin with a demonstration of typesetting mathematics with
+[Markdown](https://en.wikipedia.org/wiki/Markdown), and demonstrate basic text
+formatting at the same time. In the expressions below, the number of filters
+is $N_{f}$, the flux associated with the $i$th filter is $F_{i}$, and the
+weight, $w_{i}$, is defined as
+
+$$w_{i}\equiv\sigma_{F,i}^{-2},$$
+
+where $\sigma_{F,i}$ is the uncertainty in the flux associated with the $i$th filter.
+Assume that all sums range from $i=1$ to $i=N_{f}$ and use the summation convention
+on repeated indices. Note that we strike things out like ~~this~~, italicize things
+*like this* or _like this_, and we can make things bold **like this** or __like this__.
+
+Unfortunately, --> and => do not turn into arrows automatically, but you can make
+arrows like this $\rightarrow$ and $\Rightarrow$. You can also implement a Pandoc
+[filter](http://pandoc.org/scripting.html#json-filters) to add features that are not
+built-in. So, it would be possible to make --> turn into $\rightarrow$ and introduce
+new features, such as [Graphviz](http://www.graphviz.org/) graph rendering. 
+For examples of such filters, check out
+[this list](https://github.com/jgm/pandoc/wiki/Pandoc-Filters) (or keep reading this 
+document).
+
+Here's a horizontal line / separator:
+
+------------
+
+## Table Creation
+
+There are many ways of creating tables. This is an example of the pipe table
+creation syntax...
+
+| Label        |  Description                                                        |
+| :----------: | :-----------------------------------------------------------------: |
+| `meanflx`    | $${\langle F\rangle=\frac{1}{N_f}\sum_i F_i}$$                      |
+| `wmeanflx`   | $${\langle F\rangle_w=\frac{F_i w_i}{\sum_i w_i}}$$                 |
+| `rmsflx`     | $${\sqrt{\langle F^2\rangle_w} = \sqrt{\frac{F_i^2 w_i}{\sum_i}}}$$ |
+
+Here's one more example, with a table caption:
+
+  Right     Left    Center   
+ ------    ------  --------
+     12    12        12      
+    123    123       123     
+      1    1          1      
+ --------------------------
+
+Table:  Demonstration of simple table syntax.
+
+Refer to the [documentation](http://pandoc.org/MANUAL.html#tables) to learn more
+about the other types of tables.
+
+--------------
+
+## Line Blocks
+
+Normally, adjacent lines are combined together, so a set of short formatted lines,
+such as an address or verse, becomes jumbled. To overcome this, place `|` at the
+beginning of each line, followed by a space. This preserves the formatting:
+
+| I am the very model of a modern Major-General,
+| I've information vegetable, animal, and mineral,
+| I know the kings of England, and I quote the fights historical
+| From Marathon to Waterloo, in order categorical
+| I'm very well acquainted, too, with matters mathematical,
+| I understand equations, both the simple and quadratical,
+| About binomial theorem I'm teeming with a lot o' news,
+| With many cheerful facts about the square of the hypotenuse.
+|
+| I'm very good at integral and differential calculus;
+| I know the scientific names of beings animalculous:
+|     In short, in matters vegetable, animal, and mineral,
+|     I am the very model of a modern Major-General.
+|
+
+Note the indentation on the final two lines above.
+
+----------------------------------------------
+
+## Inserting an Image
+
+Images are inserted using the following syntax. Captions are optional.
+
+![This is a caption. Captions are optional. Just leave the square braces empty to omit the caption](http://www.nrstickley.com/wp-content/uploads/2014/12/synthetic.png){.center}
+
+----------------------------------------------
+
+## Block Quotes
+
+The syntax for block quotes is extremely simple:
+
+> You can write a block quote by putting a single '`>`' at the beginning of a block of text
+or by placing the '`>`' at the beginning of each line of the quoted block, similar
+to the way e-mail readers handle quoted messages.
+
+------------------------------------------------
+
+## Enumerated lists
+
+#. You can use integers or the `#` symbol in enumerated lists.
+#. This is quite convenient. For example,
+       i. You don't have to count
+      ii. If you want to change the order, no numbering needs to be changed
+#. You can also use roman numerals, obviously.   
+
+## Example Lists
+
+(@first)  This is Example (@first).
+
+(@second) This is Example (@second).
+
+Now we discuss something for a while and introduce the third example...
+
+(@bla) This is Example (@bla).
+
+You can refer to an example by its label. For instance Example (@second).
+
+-------------------------------------------------
+
+## Syntax Highlighting
+
+### A Python syntax highlighting example:
+
+You can include blocks of pre-formatted text, like this. If the text is source code,
+you can tell Pandoc to perform syntax highlighting. This is graphviz.py:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {.python .numberLines}
+#!/usr/bin/env python
+
+"""
+Pandoc filter to process code blocks with class "graph" into
+graphviz-generated images.
+Requires pygraphviz, pandocfilters
+"""
+
+import os
+import sys
+
+import pygraphviz
+
+from pandocfilters import toJSONFilter, Para, Image, get_filename4code
+from pandocfilters import get_caption, get_extension, get_value
+
+def document_name():
+    if "PANDOC_INPUT_FILE" in os.environ:
+        return os.environ["PANDOC_INPUT_FILE"]
+    else:
+        return "graph"
+
+def graphviz(key, value, format, _):
+    if key == 'CodeBlock':
+        [[ident, classes, keyvals], code] = value
+        if "graph" in classes:
+            caption, typef, keyvals = get_caption(keyvals)
+            prog, keyvals = get_value(keyvals, u"prog", u"dot")
+            filetype = get_extension(format, "svg", html="svg", latex="pdf")
+            dest = get_filename4code(document_name(), code, filetype)
+
+            if not os.path.isfile(dest):
+                g = pygraphviz.AGraph(string=code)
+                g.layout()
+                g.draw(dest, prog=prog)
+                sys.stderr.write('Created image ' + dest + '\n')
+
+            image = Image([ident, classes, keyvals], 
+                          caption, 
+                          [dest, typef])
+
+            return Para([image])
+
+if __name__ == "__main__":
+
+    toJSONFilter(graphviz)
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+### A C++ syntax highlighting example:
+
+Here's another example using a different programming language (and a different
+method of specifying the pre-formatted text block).
+
+``` {.cpp .numberLines startFrom="14"}
+#include <iostream>
+
+int main()
+{
+    // comment
+    std::cout << "Hello, World!\n";
+    return 0;
+}
+
+```
+--------------------------------------------------
+
+
+## An example of the power of filters (graphviz.py)
+
+This is an example of a feature that was added using a Pandoc filter (refer to the Python code above). Plain 
+Pandoc does not automatically render Graphviz syntax to inline images, but the short Python program
+above adds this feature.
+
+```{.graph .center caption="This was generated using the graphviz.py filter."}
+
+digraph G {
+
+  bgcolor="#ffffff00"
+
+  subgraph cluster_0 {
+    style="filled, rounded";
+    color="#E6EAF2"
+    node [style=filled,color=white];
+    a0 -> a1 -> a2 -> a3;
+    a3 -> a1 [label = " -10" color=red fontcolor=red];
+    label = "System A";
+  }
+
+  subgraph cluster_1 {
+    node [style=filled color="#E6EAF2"];
+    b0 -> b1 -> b2 -> b3;
+    b0 -> b2 [label = " +12" color=green fontcolor=green];
+    label = "System B";
+    style="dashed, rounded"
+    color=blue
+  }
+
+  start -> a0;
+  start -> b0;
+  a1 -> b3;
+  a3 -> end;
+  b3 -> end;
+
+  start [label="load" shape=folder];
+  end [label="store" shape=box3d];
+}
+```
+
+--------------------------------------------------
+
+A diagram showing how this document is compiled, using a filter:
+
+```{.graph .center caption="This demonstrates how filters work. They perform actions on Pandoc's abstract syntax tree (AST)."}
+
+digraph G {
+
+node [shape=box]
+bgcolor="#ffffff00"
+
+input [label = "example.md"];
+markdown_parser [label = "Pandoc Markdown parser"];
+filter [label = "graphviz.py filter"];
+html_writer [label = "Pandoc HTML writer"];
+output [label = "example.html"];
+
+input -> markdown_parser;
+
+markdown_parser -> filter [label = " AST"];
+
+filter -> html_writer [label = " AST"];
+
+html_writer -> output;
+
+}
+
+```
+
+------------------------------------------------
+
+```{.graph .center caption="A singly-linked list."}
+
+digraph G {
+
+bgcolor="#ffffff00";
+node [shape=box];
+rankdir=LR;
+ranksep=0.5;
+
+a -> b -> c -> d -> e
+
+}
+
+```
+
+-------------------------------------------------
+
+```{.graph .center caption="A doubly-linked list."}
+
+digraph G {
+
+bgcolor="#ffffff00"
+node [shape=box]
+rankdir=LR;
+ranksep=0.5;
+
+a -> b -> c -> d -> e
+
+e -> d -> c -> b -> a
+
+}
+
+```
+
+-------------------------------------------------
+
+
+```{.graph .center caption="A binary tree."}
+
+digraph G {
+
+bgcolor="#ffffff00"
+
+node [shape=circle, width=0.5, fixedsize=true];
+
+0 -> 1
+0 -> 2
+
+1 -> 3
+1 -> 5
+
+2 -> 4
+2 -> 6
+
+3 -> 7
+3 -> 9
+
+5 -> 11
+5 -> 13
+
+4 -> 8
+4 -> 10
+
+6 -> 12
+6 -> 14
+
+}
+
+```
+
+-------------------------------------------------
+
+
+Note how this is rendered with `prog=neato`, instead of `prog=dot`, which is the default. Other options are `twopi`, `circo`, `fdp`, and `nop`:
+
+
+```{.graph .center prog=neato caption="Star network topology."}
+graph ER {
+
+bgcolor="#ffffff00"
+
+A -- 1
+A -- 2
+A -- 3
+A -- 4
+A -- 5
+}
+```
+
+------------------------------------------------
+
+
+```{.graph .center prog=neato caption="Ring network topology."}
+graph ER {
+
+bgcolor="#ffffff00"
+
+A -- B -- C -- D -- E -- F -- G -- A
+}
+```
+
+------------------------------------------------
+
+
+```{.graph .center prog=neato caption="Fully-connected mesh network topology."}
+graph ER {
+
+bgcolor="#ffffff00";
+node [shape=circle, width=0.5, fixedsize=true];
+edge [len=2]
+
+A -- B 
+A -- C 
+A -- D 
+A -- E 
+A -- F 
+
+B -- C 
+B -- D 
+B -- E 
+B -- F 
+
+C -- D 
+C -- E 
+C -- F 
+
+D -- E 
+D -- F 
+
+E -- F 
+}
+```
+
+
+------------------------------------------------
+
+And one more, just because these are so fun...
+
+```{.graph .center caption="A tiny neural network."}
+
+digraph G {
+
+bgcolor="#ffffff00"
+
+splines=line;
+rankdir=LR;
+nodesep=0.33;
+ranksep=1.33;
+edge [arrowsize=0.4, fontsize=8, arrowhead="open", style="setlinewidth(0.5)"];
+node [shape=circle, fontsize=9, width=0.36, fixedsize=true];
+
+node_0_0 [label=" ", style="filled", fillcolor="#ff000026"];
+node_0_1 [label=" ", style="filled", fillcolor="#ff000026"];
+node_0_2 [label=" ", style="filled", fillcolor="#ff000026"];
+node_0_3 [label=" ", style="filled", fillcolor="#ff000026"];
+node_0_4 [label=" ", style="filled", fillcolor="#ff000026"];
+node_1_0 [label=" ", style="filled", fillcolor="#0000ee26"];
+node_1_1 [label=" ", style="filled", fillcolor="#0000ee26"];
+node_1_2 [label=" ", style="filled", fillcolor="#ff000026"];
+node_2_0 [label="f(x)"];
+
+node_0_0 -> node_1_0 [color="#ff000026"];
+node_0_0 -> node_1_1 [color="#0000ee26"];
+node_0_0 -> node_1_2 [color="#0000ee26"];
+node_0_1 -> node_1_0 [color="#ff000026"];
+node_0_1 -> node_1_1 [color="#ff000026"];
+node_0_1 -> node_1_2 [color="#0000ee26"];
+node_0_2 -> node_1_0 [color="#0000ee26"];
+node_0_2 -> node_1_1 [color="#ff000026"];
+node_0_2 -> node_1_2 [color="#0000ee26"];
+node_0_3 -> node_1_0 [color="#0000ee26"];
+node_0_3 -> node_1_1 [color="#0000ee26"];
+node_0_3 -> node_1_2 [color="#ff000026"];
+node_0_4 -> node_1_0 [color="#0000ee26"];
+node_0_4 -> node_1_1 [color="#0000ee26"];
+node_0_4 -> node_1_2 [color="#ff000026"];
+node_1_0 -> node_2_0 [color="#0000eecb"];
+node_1_1 -> node_2_0 [color="#0000eecb"];
+node_1_2 -> node_2_0 [color="#0000ee8a"];
+}
+```
+
+----------------------
+
+
+## Compiling this with Pandoc
+
+To convert[^1] this Markdown document to HTML, I used the following command:
+
+``` {.bash}
+# BTW, this is a Bash syntax highlighting example.
+
+$ pandoc example.md -s --smart --mathjax \
+         --css nrstyle.css \
+         --highlight-style pygments \
+         --columns=200 \
+         --filter graphviz.py \
+         -o example.html
+```
+
+
+### An explanation of each parameter (as a bulleted list)
+
+
+* **`example.md`**:  the input file
+* **`-s`**: create a stand-alone document (rather than a document
+    fragment that lacks a header).
+* **`--smart`**: automatically replace `--`, `---`, and `...` with --, ---, and ...
+    and handle quotation marks properly.
+* **`--mathjax`**: use the [MathJax](https://www.mathjax.org/) library for
+    typesetting math in HTML documents.
+* **`--css nrstyle.css`**: Use the nrstyle.css stylesheet in the HTML output document.
+* **`--highlight-style pygments`**: Turn on syntax highlighting and
+    use the pygments color scheme.
+* **`--columns=200`**: set the line length to 200. This makes the
+    tables display properly.
+* **`--filter graphviz.py`**: Pass Pandoc's abstract syntax tree through the filter
+    program `graphviz.py` before rendering the output document.
+* **`-o example.html`**: Specify the name and type of the output file.
+    The format is inferred from the suffix (file extension).
+
+----------------
+
+
+
+### The same explanation, formatted as a definition list
+
+`example.md`
+
+:    The input file
+
+`-s`
+
+:    Create a stand-alone document (rather than a document fragment that lacks a header).
+
+`--smart`
+
+:   Automatically replace `--`, `---`, and `...` with --, ---, and ... and handle quotation marks properly.
+
+`--mathjax`
+
+:    Use the [MathJax](https://www.mathjax.org/) library for typesetting math in HTML documents.
+
+`--css nrstyle.css`
+
+:    Use the nrstyle.css stylesheet in the HTML output document.
+
+`--highlight-style pygments`
+
+:    Turn on syntax highlighting and use the pygments color scheme.
+
+`--columns=200`
+
+:    set the line length to 200. This makes the tables display properly.
+
+`--filter graphviz.py`
+
+: Pass Pandoc's abstract syntax tree through the filter program `graphviz.py` before rendering the output 
+document.
+
+`-o example.html`
+
+:    Specify the name and type of the output file. The format is inferred from the suffix (file extension).
+
+[^1]: This is a footnote.
+
+
+[//]: # This is a comment
