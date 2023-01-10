@@ -1,0 +1,24 @@
+\usepackage{sectsty}
+
+\usepackage{enumitem}
+\usepackage{amsfonts}
+
+\usepackage{hyperref}
+
+\usepackage{graphicx}
+
+\sectionfont{\LARGE\underline\clearpage}
+	
+% level one
+\setlist[itemize,1]{label=$\bullet$}
+% level two
+\setlist[itemize,2]{label=$\circ$}
+% level three
+\setlist[itemize,3]{label=$\star$}
+
+\hypersetup{
+  pdftitle={My awesome book},
+  pdfauthor={learnbyexample},
+  pdfsubject={pandoc},
+  pdfkeywords={pandoc,pdf,xelatex}
+}
