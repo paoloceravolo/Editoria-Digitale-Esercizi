@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="ED class" />
+  <title>Example of Markdown conversion</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Example of Markdown conversion</h1>
+<p class="author">ED class</p>
+<p class="date">18 novembre 2022</p>
+</header>
+<h1 id="major-section-heading">Major Section Heading</h1>
+<h2 id="math">Math</h2>
+<p>I’ll begin with a demonstration of typesetting mathematics with <a
+href="https://en.wikipedia.org/wiki/Markdown">Markdown</a>, and
+demonstrate basic text formatting at the same time. In the expressions
+below, the number of filters is <span
+class="math inline">\(N_{f}\)</span>, the flux associated with the <span
+class="math inline">\(i\)</span>th filter is <span
+class="math inline">\(F_{i}\)</span>, and the weight, <span
+class="math inline">\(w_{i}\)</span>, is defined as</p>
+<p><span
+class="math display">\[w_{i}\equiv\sigma_{F,i}^{-2},\]</span></p>
+<p>where <span class="math inline">\(\sigma_{F,i}\)</span> is the
+uncertainty in the flux associated with the <span
+class="math inline">\(i\)</span>th filter. Assume that all sums range
+from <span class="math inline">\(i=1\)</span> to <span
+class="math inline">\(i=N_{f}\)</span> and use the summation convention
+on repeated indices. Note that we strike things out like
+<del>this</del>, italicize things <em>like this</em> or <em>like
+this</em>, and we can make things bold <strong>like this</strong> or
+<strong>like this</strong>.</p>
+<p>Unfortunately, –&gt; and =&gt; do not turn into arrows automatically,
+but you can make arrows like this <span
+class="math inline">\(\rightarrow\)</span> and <span
+class="math inline">\(\Rightarrow\)</span>. You can also implement a
+Pandoc <a
+href="http://pandoc.org/scripting.html#json-filters">filter</a> to add
+features that are not built-in. So, it would be possible to make –&gt;
+turn into <span class="math inline">\(\rightarrow\)</span> and introduce
+new features, such as <a href="http://www.graphviz.org/">Graphviz</a>
+graph rendering. For examples of such filters, check out <a
+href="https://github.com/jgm/pandoc/wiki/Pandoc-Filters">this list</a>
+(or keep reading this document).</p>
+<p>Here’s a horizontal line / separator:</p>
+<hr />
+<h2 id="table-creation">Table Creation</h2>
+<p>There are many ways of creating tables. This is an example of the
+pipe table creation syntax…</p>
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 84%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Label</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><code>meanflx</code></td>
+<td style="text-align: center;"><span class="math display">\[{\langle
+F\rangle=\frac{1}{N_f}\sum_i F_i}\]</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>wmeanflx</code></td>
+<td style="text-align: center;"><span class="math display">\[{\langle
+F\rangle_w=\frac{F_i w_i}{\sum_i w_i}}\]</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>rmsflx</code></td>
+<td style="text-align: center;"><span
+class="math display">\[{\sqrt{\langle F^2\rangle_w} = \sqrt{\frac{F_i^2
+w_i}{\sum_i}}}\]</span></td>
+</tr>
+</tbody>
+</table>
+<p>Here’s one more example, with a table caption:</p>
+<table>
+<caption>Demonstration of simple table syntax.</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">Right</th>
+<th style="text-align: center;">Left</th>
+<th style="text-align: center;">Center</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">12</td>
+<td style="text-align: center;">12</td>
+<td style="text-align: center;">12</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">123</td>
+<td style="text-align: center;">123</td>
+<td style="text-align: center;">123</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+</tr>
+</tbody>
+</table>
+<p>Refer to the <a
+href="http://pandoc.org/MANUAL.html#tables">documentation</a> to learn
+more about the other types of tables.</p>
+<hr />
+<h2 id="line-blocks">Line Blocks</h2>
+<p>Normally, adjacent lines are combined together, so a set of short
+formatted lines, such as an address or verse, becomes jumbled. To
+overcome this, place <code>|</code> at the beginning of each line,
+followed by a space. This preserves the formatting:</p>
+<div class="line-block">I am the very model of a modern
+Major-General,<br />
+I’ve information vegetable, animal, and mineral,<br />
+I know the kings of England, and I quote the fights historical<br />
+From Marathon to Waterloo, in order categorical<br />
+I’m very well acquainted, too, with matters mathematical,<br />
+I understand equations, both the simple and quadratical,<br />
+About binomial theorem I’m teeming with a lot o’ news,<br />
+With many cheerful facts about the square of the hypotenuse.<br />
+<br />
+I’m very good at integral and differential calculus;<br />
+I know the scientific names of beings animalculous:<br />
+    In short, in matters vegetable, animal, and mineral,<br />
+    I am the very model of a modern Major-General.<br />
+</div>
+<p>Note the indentation on the final two lines above.</p>
+<hr />
+<h2 id="inserting-an-image">Inserting an Image</h2>
+<p>Images are inserted using the following syntax. Captions are
+optional.</p>
+<figure>
+<img
+src="http://www.nrstickley.com/wp-content/uploads/2014/12/synthetic.png"
+class="center"
+alt="This is a caption. Captions are optional. Just leave the square braces empty to omit the caption" />
+<figcaption aria-hidden="true">This is a caption. Captions are optional.
+Just leave the square braces empty to omit the caption</figcaption>
+</figure>
+<hr />
+<h2 id="block-quotes">Block Quotes</h2>
+<p>The syntax for block quotes is extremely simple:</p>
+<blockquote>
+<p>You can write a block quote by putting a single ‘<code>&gt;</code>’
+at the beginning of a block of text or by placing the
+‘<code>&gt;</code>’ at the beginning of each line of the quoted block,
+similar to the way e-mail readers handle quoted messages.</p>
+</blockquote>
+<hr />
+<h2 id="enumerated-lists">Enumerated lists</h2>
+<ol>
+<li>You can use integers or the <code>#</code> symbol in enumerated
+lists.</li>
+<li>This is quite convenient. For example, i. You don’t have to count
+<ol start="2" type="i">
+<li>If you want to change the order, no numbering needs to be
+changed</li>
+</ol></li>
+<li>You can also use roman numerals, obviously.</li>
+</ol>
+<h2 id="example-lists">Example Lists</h2>
+<ol class="example" type="1">
+<li><p>This is Example (1).</p></li>
+<li><p>This is Example (2).</p></li>
+</ol>
+<p>Now we discuss something for a while and introduce the third
+example…</p>
+<ol start="3" class="example" type="1">
+<li>This is Example (3).</li>
+</ol>
+<p>You can refer to an example by its label. For instance Example
+(2).</p>
+<hr />
+<h2 id="syntax-highlighting">Syntax Highlighting</h2>
+<h3 id="a-python-syntax-highlighting-example">A Python syntax
+highlighting example:</h3>
+<p>You can include blocks of pre-formatted text, like this. If the text
+is source code, you can tell Pandoc to perform syntax highlighting. This
+is graphviz.py:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode numberSource python numberLines"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">#!/usr/bin/env python</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="co">Pandoc filter to process code blocks with class &quot;graph&quot; into</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="co">graphviz-generated images.</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="co">Requires pygraphviz, pandocfilters</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a></span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="im">import</span> os</span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="im">import</span> sys</span>
+<span id="cb1-11"><a href="#cb1-11"></a></span>
+<span id="cb1-12"><a href="#cb1-12"></a><span class="im">import</span> pygraphviz</span>
+<span id="cb1-13"><a href="#cb1-13"></a></span>
+<span id="cb1-14"><a href="#cb1-14"></a><span class="im">from</span> pandocfilters <span class="im">import</span> toJSONFilter, Para, Image, get_filename4code</span>
+<span id="cb1-15"><a href="#cb1-15"></a><span class="im">from</span> pandocfilters <span class="im">import</span> get_caption, get_extension, get_value</span>
+<span id="cb1-16"><a href="#cb1-16"></a></span>
+<span id="cb1-17"><a href="#cb1-17"></a><span class="kw">def</span> document_name():</span>
+<span id="cb1-18"><a href="#cb1-18"></a>    <span class="cf">if</span> <span class="st">&quot;PANDOC_INPUT_FILE&quot;</span> <span class="kw">in</span> os.environ:</span>
+<span id="cb1-19"><a href="#cb1-19"></a>        <span class="cf">return</span> os.environ[<span class="st">&quot;PANDOC_INPUT_FILE&quot;</span>]</span>
+<span id="cb1-20"><a href="#cb1-20"></a>    <span class="cf">else</span>:</span>
+<span id="cb1-21"><a href="#cb1-21"></a>        <span class="cf">return</span> <span class="st">&quot;graph&quot;</span></span>
+<span id="cb1-22"><a href="#cb1-22"></a></span>
+<span id="cb1-23"><a href="#cb1-23"></a><span class="kw">def</span> graphviz(key, value, <span class="bu">format</span>, _):</span>
+<span id="cb1-24"><a href="#cb1-24"></a>    <span class="cf">if</span> key <span class="op">==</span> <span class="st">&#39;CodeBlock&#39;</span>:</span>
+<span id="cb1-25"><a href="#cb1-25"></a>        [[ident, classes, keyvals], code] <span class="op">=</span> value</span>
+<span id="cb1-26"><a href="#cb1-26"></a>        <span class="cf">if</span> <span class="st">&quot;graph&quot;</span> <span class="kw">in</span> classes:</span>
+<span id="cb1-27"><a href="#cb1-27"></a>            caption, typef, keyvals <span class="op">=</span> get_caption(keyvals)</span>
+<span id="cb1-28"><a href="#cb1-28"></a>            prog, keyvals <span class="op">=</span> get_value(keyvals, <span class="st">u&quot;prog&quot;</span>, <span class="st">u&quot;dot&quot;</span>)</span>
+<span id="cb1-29"><a href="#cb1-29"></a>            filetype <span class="op">=</span> get_extension(<span class="bu">format</span>, <span class="st">&quot;svg&quot;</span>, html<span class="op">=</span><span class="st">&quot;svg&quot;</span>, latex<span class="op">=</span><span class="st">&quot;pdf&quot;</span>)</span>
+<span id="cb1-30"><a href="#cb1-30"></a>            dest <span class="op">=</span> get_filename4code(document_name(), code, filetype)</span>
+<span id="cb1-31"><a href="#cb1-31"></a></span>
+<span id="cb1-32"><a href="#cb1-32"></a>            <span class="cf">if</span> <span class="kw">not</span> os.path.isfile(dest):</span>
+<span id="cb1-33"><a href="#cb1-33"></a>                g <span class="op">=</span> pygraphviz.AGraph(string<span class="op">=</span>code)</span>
+<span id="cb1-34"><a href="#cb1-34"></a>                g.layout()</span>
+<span id="cb1-35"><a href="#cb1-35"></a>                g.draw(dest, prog<span class="op">=</span>prog)</span>
+<span id="cb1-36"><a href="#cb1-36"></a>                sys.stderr.write(<span class="st">&#39;Created image &#39;</span> <span class="op">+</span> dest <span class="op">+</span> <span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span>)</span>
+<span id="cb1-37"><a href="#cb1-37"></a></span>
+<span id="cb1-38"><a href="#cb1-38"></a>            image <span class="op">=</span> Image([ident, classes, keyvals], </span>
+<span id="cb1-39"><a href="#cb1-39"></a>                          caption, </span>
+<span id="cb1-40"><a href="#cb1-40"></a>                          [dest, typef])</span>
+<span id="cb1-41"><a href="#cb1-41"></a></span>
+<span id="cb1-42"><a href="#cb1-42"></a>            <span class="cf">return</span> Para([image])</span>
+<span id="cb1-43"><a href="#cb1-43"></a></span>
+<span id="cb1-44"><a href="#cb1-44"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&quot;__main__&quot;</span>:</span>
+<span id="cb1-45"><a href="#cb1-45"></a></span>
+<span id="cb1-46"><a href="#cb1-46"></a>    toJSONFilter(graphviz)</span></code></pre></div>
+<h3 id="a-c-syntax-highlighting-example">A C++ syntax highlighting
+example:</h3>
+<p>Here’s another example using a different programming language (and a
+different method of specifying the pre-formatted text block).</p>
+<div class="sourceCode" id="cb2" data-startFrom="14"><pre
+class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 13;"><span id="cb2-14"><a href="#cb2-14"></a><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></span>
+<span id="cb2-15"><a href="#cb2-15"></a></span>
+<span id="cb2-16"><a href="#cb2-16"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb2-17"><a href="#cb2-17"></a><span class="op">{</span></span>
+<span id="cb2-18"><a href="#cb2-18"></a>    <span class="co">// comment</span></span>
+<span id="cb2-19"><a href="#cb2-19"></a>    <span class="bu">std::</span>cout<span class="op"> &lt;&lt;</span> <span class="st">&quot;Hello, World!</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">;</span></span>
+<span id="cb2-20"><a href="#cb2-20"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb2-21"><a href="#cb2-21"></a><span class="op">}</span></span></code></pre></div>
+<hr />
+<h2 id="an-example-of-the-power-of-filters-graphviz.py">An example of
+the power of filters (graphviz.py)</h2>
+<p>This is an example of a feature that was added using a Pandoc filter
+(refer to the Python code above). Plain Pandoc does not automatically
+render Graphviz syntax to inline images, but the short Python program
+above adds this feature.</p>
+<pre class="graph center"
+data-caption="This was generated using the graphviz.py filter."><code>
+digraph G {
+
+  bgcolor=&quot;#ffffff00&quot;
+
+  subgraph cluster_0 {
+    style=&quot;filled, rounded&quot;;
+    color=&quot;#E6EAF2&quot;
+    node [style=filled,color=white];
+    a0 -&gt; a1 -&gt; a2 -&gt; a3;
+    a3 -&gt; a1 [label = &quot; -10&quot; color=red fontcolor=red];
+    label = &quot;System A&quot;;
+  }
+
+  subgraph cluster_1 {
+    node [style=filled color=&quot;#E6EAF2&quot;];
+    b0 -&gt; b1 -&gt; b2 -&gt; b3;
+    b0 -&gt; b2 [label = &quot; +12&quot; color=green fontcolor=green];
+    label = &quot;System B&quot;;
+    style=&quot;dashed, rounded&quot;
+    color=blue
+  }
+
+  start -&gt; a0;
+  start -&gt; b0;
+  a1 -&gt; b3;
+  a3 -&gt; end;
+  b3 -&gt; end;
+
+  start [label=&quot;load&quot; shape=folder];
+  end [label=&quot;store&quot; shape=box3d];
+}</code></pre>
+<hr />
+<p>A diagram showing how this document is compiled, using a filter:</p>
+<pre class="graph center"
+data-caption="This demonstrates how filters work. They perform actions on Pandoc&#39;s abstract syntax tree (AST)."><code>
+digraph G {
+
+node [shape=box]
+bgcolor=&quot;#ffffff00&quot;
+
+input [label = &quot;example.md&quot;];
+markdown_parser [label = &quot;Pandoc Markdown parser&quot;];
+filter [label = &quot;graphviz.py filter&quot;];
+html_writer [label = &quot;Pandoc HTML writer&quot;];
+output [label = &quot;example.html&quot;];
+
+input -&gt; markdown_parser;
+
+markdown_parser -&gt; filter [label = &quot; AST&quot;];
+
+filter -&gt; html_writer [label = &quot; AST&quot;];
+
+html_writer -&gt; output;
+
+}
+</code></pre>
+<hr />
+<pre class="graph center" data-caption="A singly-linked list."><code>
+digraph G {
+
+bgcolor=&quot;#ffffff00&quot;;
+node [shape=box];
+rankdir=LR;
+ranksep=0.5;
+
+a -&gt; b -&gt; c -&gt; d -&gt; e
+
+}
+</code></pre>
+<hr />
+<pre class="graph center" data-caption="A doubly-linked list."><code>
+digraph G {
+
+bgcolor=&quot;#ffffff00&quot;
+node [shape=box]
+rankdir=LR;
+ranksep=0.5;
+
+a -&gt; b -&gt; c -&gt; d -&gt; e
+
+e -&gt; d -&gt; c -&gt; b -&gt; a
+
+}
+</code></pre>
+<hr />
+<pre class="graph center" data-caption="A binary tree."><code>
+digraph G {
+
+bgcolor=&quot;#ffffff00&quot;
+
+node [shape=circle, width=0.5, fixedsize=true];
+
+0 -&gt; 1
+0 -&gt; 2
+
+1 -&gt; 3
+1 -&gt; 5
+
+2 -&gt; 4
+2 -&gt; 6
+
+3 -&gt; 7
+3 -&gt; 9
+
+5 -&gt; 11
+5 -&gt; 13
+
+4 -&gt; 8
+4 -&gt; 10
+
+6 -&gt; 12
+6 -&gt; 14
+
+}
+</code></pre>
+<hr />
+<p>Note how this is rendered with <code>prog=neato</code>, instead of
+<code>prog=dot</code>, which is the default. Other options are
+<code>twopi</code>, <code>circo</code>, <code>fdp</code>, and
+<code>nop</code>:</p>
+<pre class="graph center" data-prog="neato"
+data-caption="Star network topology."><code>graph ER {
+
+bgcolor=&quot;#ffffff00&quot;
+
+A -- 1
+A -- 2
+A -- 3
+A -- 4
+A -- 5
+}</code></pre>
+<hr />
+<pre class="graph center" data-prog="neato"
+data-caption="Ring network topology."><code>graph ER {
+
+bgcolor=&quot;#ffffff00&quot;
+
+A -- B -- C -- D -- E -- F -- G -- A
+}</code></pre>
+<hr />
+<pre class="graph center" data-prog="neato"
+data-caption="Fully-connected mesh network topology."><code>graph ER {
+
+bgcolor=&quot;#ffffff00&quot;;
+node [shape=circle, width=0.5, fixedsize=true];
+edge [len=2]
+
+A -- B 
+A -- C 
+A -- D 
+A -- E 
+A -- F 
+
+B -- C 
+B -- D 
+B -- E 
+B -- F 
+
+C -- D 
+C -- E 
+C -- F 
+
+D -- E 
+D -- F 
+
+E -- F 
+}</code></pre>
+<hr />
+<p>And one more, just because these are so fun…</p>
+<pre class="graph center" data-caption="A tiny neural network."><code>
+digraph G {
+
+bgcolor=&quot;#ffffff00&quot;
+
+splines=line;
+rankdir=LR;
+nodesep=0.33;
+ranksep=1.33;
+edge [arrowsize=0.4, fontsize=8, arrowhead=&quot;open&quot;, style=&quot;setlinewidth(0.5)&quot;];
+node [shape=circle, fontsize=9, width=0.36, fixedsize=true];
+
+node_0_0 [label=&quot; &quot;, style=&quot;filled&quot;, fillcolor=&quot;#ff000026&quot;];
+node_0_1 [label=&quot; &quot;, style=&quot;filled&quot;, fillcolor=&quot;#ff000026&quot;];
+node_0_2 [label=&quot; &quot;, style=&quot;filled&quot;, fillcolor=&quot;#ff000026&quot;];
+node_0_3 [label=&quot; &quot;, style=&quot;filled&quot;, fillcolor=&quot;#ff000026&quot;];
+node_0_4 [label=&quot; &quot;, style=&quot;filled&quot;, fillcolor=&quot;#ff000026&quot;];
+node_1_0 [label=&quot; &quot;, style=&quot;filled&quot;, fillcolor=&quot;#0000ee26&quot;];
+node_1_1 [label=&quot; &quot;, style=&quot;filled&quot;, fillcolor=&quot;#0000ee26&quot;];
+node_1_2 [label=&quot; &quot;, style=&quot;filled&quot;, fillcolor=&quot;#ff000026&quot;];
+node_2_0 [label=&quot;f(x)&quot;];
+
+node_0_0 -&gt; node_1_0 [color=&quot;#ff000026&quot;];
+node_0_0 -&gt; node_1_1 [color=&quot;#0000ee26&quot;];
+node_0_0 -&gt; node_1_2 [color=&quot;#0000ee26&quot;];
+node_0_1 -&gt; node_1_0 [color=&quot;#ff000026&quot;];
+node_0_1 -&gt; node_1_1 [color=&quot;#ff000026&quot;];
+node_0_1 -&gt; node_1_2 [color=&quot;#0000ee26&quot;];
+node_0_2 -&gt; node_1_0 [color=&quot;#0000ee26&quot;];
+node_0_2 -&gt; node_1_1 [color=&quot;#ff000026&quot;];
+node_0_2 -&gt; node_1_2 [color=&quot;#0000ee26&quot;];
+node_0_3 -&gt; node_1_0 [color=&quot;#0000ee26&quot;];
+node_0_3 -&gt; node_1_1 [color=&quot;#0000ee26&quot;];
+node_0_3 -&gt; node_1_2 [color=&quot;#ff000026&quot;];
+node_0_4 -&gt; node_1_0 [color=&quot;#0000ee26&quot;];
+node_0_4 -&gt; node_1_1 [color=&quot;#0000ee26&quot;];
+node_0_4 -&gt; node_1_2 [color=&quot;#ff000026&quot;];
+node_1_0 -&gt; node_2_0 [color=&quot;#0000eecb&quot;];
+node_1_1 -&gt; node_2_0 [color=&quot;#0000eecb&quot;];
+node_1_2 -&gt; node_2_0 [color=&quot;#0000ee8a&quot;];
+}</code></pre>
+<hr />
+<h2 id="compiling-this-with-pandoc">Compiling this with Pandoc</h2>
+<p>To convert<a href="#fn1" class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a> this Markdown document to HTML, I
+used the following command:</p>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># BTW, this is a Bash syntax highlighting example.</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pandoc example.md <span class="at">-s</span> <span class="at">--smart</span> <span class="at">--mathjax</span> <span class="dt">\</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">--css</span> nrstyle.css <span class="dt">\</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">--highlight-style</span> pygments <span class="dt">\</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">--columns</span><span class="op">=</span>200 <span class="dt">\</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">--filter</span> graphviz.py <span class="dt">\</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">-o</span> example.html</span></code></pre></div>
+<h3 id="an-explanation-of-each-parameter-as-a-bulleted-list">An
+explanation of each parameter (as a bulleted list)</h3>
+<ul>
+<li><strong><code>example.md</code></strong>: the input file</li>
+<li><strong><code>-s</code></strong>: create a stand-alone document
+(rather than a document fragment that lacks a header).</li>
+<li><strong><code>--smart</code></strong>: automatically replace
+<code>--</code>, <code>---</code>, and <code>...</code> with –, —, and …
+and handle quotation marks properly.</li>
+<li><strong><code>--mathjax</code></strong>: use the <a
+href="https://www.mathjax.org/">MathJax</a> library for typesetting math
+in HTML documents.</li>
+<li><strong><code>--css nrstyle.css</code></strong>: Use the nrstyle.css
+stylesheet in the HTML output document.</li>
+<li><strong><code>--highlight-style pygments</code></strong>: Turn on
+syntax highlighting and use the pygments color scheme.</li>
+<li><strong><code>--columns=200</code></strong>: set the line length to
+200. This makes the tables display properly.</li>
+<li><strong><code>--filter graphviz.py</code></strong>: Pass Pandoc’s
+abstract syntax tree through the filter program <code>graphviz.py</code>
+before rendering the output document.</li>
+<li><strong><code>-o example.html</code></strong>: Specify the name and
+type of the output file. The format is inferred from the suffix (file
+extension).</li>
+</ul>
+<hr />
+<h3 id="the-same-explanation-formatted-as-a-definition-list">The same
+explanation, formatted as a definition list</h3>
+<dl>
+<dt><code>example.md</code></dt>
+<dd>
+<p>The input file</p>
+</dd>
+<dt><code>-s</code></dt>
+<dd>
+<p>Create a stand-alone document (rather than a document fragment that
+lacks a header).</p>
+</dd>
+<dt><code>--smart</code></dt>
+<dd>
+<p>Automatically replace <code>--</code>, <code>---</code>, and
+<code>...</code> with –, —, and … and handle quotation marks
+properly.</p>
+</dd>
+<dt><code>--mathjax</code></dt>
+<dd>
+<p>Use the <a href="https://www.mathjax.org/">MathJax</a> library for
+typesetting math in HTML documents.</p>
+</dd>
+<dt><code>--css nrstyle.css</code></dt>
+<dd>
+<p>Use the nrstyle.css stylesheet in the HTML output document.</p>
+</dd>
+<dt><code>--highlight-style pygments</code></dt>
+<dd>
+<p>Turn on syntax highlighting and use the pygments color scheme.</p>
+</dd>
+<dt><code>--columns=200</code></dt>
+<dd>
+<p>set the line length to 200. This makes the tables display
+properly.</p>
+</dd>
+<dt><code>--filter graphviz.py</code></dt>
+<dd>
+<p>Pass Pandoc’s abstract syntax tree through the filter program
+<code>graphviz.py</code> before rendering the output document.</p>
+</dd>
+<dt><code>-o example.html</code></dt>
+<dd>
+<p>Specify the name and type of the output file. The format is inferred
+from the suffix (file extension).</p>
+</dd>
+</dl>
+<section id="footnotes" class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p>This is a footnote.<a href="#fnref1"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+</body>
+</html>
