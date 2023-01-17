@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="author" content="Paolo Ceravolo">
+	<title>My ePub example</title>
+	<link rel="stylesheet" type="text/css" href="epub.css">
+</head>
+<!-- To format the HTML5 properly to be compatible with the epub standard we have to follow these specifications: https://www.w3.org/publishing/epub3/epub-contentdocs.html#sec-epub-type-attribute -->
+<body epub:type="frontmatter">
+
+<!---
+<h1>My ePub</h1>
+
+<img src="cover.jpg" alt="Cover Image">
+-->
+
+ <nav epub:type="toc">
+  <h2>Table of Contents</h2>
+  <ol>
+    <li><a href="#chapter-1">Chapter 1</a></li>
+    <li><a href="#chapter-2">Chapter 2</a></li>
+    <li><a href="#chapter-3">Chapter 3</a></li>
+  </ol>
+</nav>
+
+<h1 epub:type="chapter" id="chapter-1">My ePub</h1>
+<p>This is the first chapter of my ePub.</p>
+<video width="320" height="240" controls>
+  <source src="video1.mp4" type="video/mp4">
+  <source src="movie.ogg" type="video/ogg">
+  Your reader does not support the video tag.
+</video>
+<article>
+	<h2>Article</h2>
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+</article>
+<section>
+	<h3>Date:</h3>
+	<time datetime="2023-01-17">January 17th 2023</time>
+</section>
+
+<math>
+  <mrow>
+    <msup>
+      <mi>a</mi>
+      <mn>2</mn>
+    </msup>
+    <mo>+</mo>
+    <msup>
+      <mi>b</mi>
+      <mn>2</mn>
+    </msup>
+    <mo>=</mo>
+    <msup>
+      <mi>c</mi>
+      <mn>2</mn>
+    </msup>
+  </mrow>
+</math>.
+
+<h1 epub:type="chapter" id="chapter-2">Second Chapter</h1>
+<p>This is the second chapter of my ePub.</p>
+<img src="image1.jpg" alt="Image">
+
+<h1 epub:type="chapter" id="chapter-3">Third Chapter</h1>
+<p>This is the third chapter of my ePub.</p>
+<img src="https://file-examples.com/storage/fe2879c03363c669a9ef954/2017/04/file_example_MP4_480_1_5MG.mp4" alt="Video">
+
+<video width="320" height="240" controls>
+  <source src="https://file-examples.com/storage/fe2879c03363c669a9ef954/2017/04/file_example_MP4_480_1_5MG.mp4" type="video/mp4">
+  <source src="movie.ogg" type="video/ogg">
+  Your reader does not support the video tag.
+</video>
+
+</body>
+</html>
+
+
+
+
+
+
+

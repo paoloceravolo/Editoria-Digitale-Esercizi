@@ -1,0 +1,6 @@
+<dc:title>My EPUB exmaple</dc:title>
+<dc:author>Pippo</dc:author>
+<dc:date opf:event="publication">2023-01-17</dc:date>
+<dc:publisher>UNIMI</dc:publisher>
+<dc:rights>Copyright ©2022 https://www.registrolei.it/leicert/9845000B7798E81BEB72/</dc:rights>
+<dc:description>An illustrative example of generating EPUB from HTML</dc:description>
