@@ -22,9 +22,9 @@ Output: `"U2kgc3TDoCBjb21lIHN1Z2xpIGFsYmVyaSBsZSBmb2dsaWU="`
 ### Esercizio 4: Analisi della Frequenza dei Caratteri
 **Descrizione**: Scrivi un programma che analizzi la frequenza dei caratteri in un testo fornito dall'utente e mostri i risultati in ordine decrescente di frequenza.
 
-**Esempio**:  
-Input: `"hello world"`  
-Output: `h: 1, e: 1, l: 3, o: 2, w: 1, r: 1, d: 1`
+**Esempio**:    
+Input: `"Trentatrè trentini entrarono in Trento"`  
+Output: [('n', 7), ('r', 6), ('t', 6), ('e', 4), (' ', 4), ('i', 3), ('o', 3), ('T', 2), ('a', 2), ('è', 1)]
 
 ### Esercizio 5: Rimozione del BOM da un File UTF-8
 
