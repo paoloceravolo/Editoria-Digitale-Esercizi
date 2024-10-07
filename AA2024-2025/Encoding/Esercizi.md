@@ -16,8 +16,8 @@ Output: `"€"`
 **Descrizione**: Scrivi un programma che converta una stringa di testo in una rappresentazione Base64. Gli studenti dovranno anche implementare la funzione inversa per decodificare il testo.
 
 **Esempio**:  
-Input: `"ChatGPT"`  
-Output: `"Q2hhdEdQVA=="`
+Input: `"Si stà come sugli alberi le foglie"`  
+Output: `"U2kgc3TDoCBjb21lIHN1Z2xpIGFsYmVyaSBsZSBmb2dsaWU="`
 
 ### Esercizio 4: Analisi della Frequenza dei Caratteri
 **Descrizione**: Scrivi un programma che analizzi la frequenza dei caratteri in un testo fornito dall'utente e mostri i risultati in ordine decrescente di frequenza.
