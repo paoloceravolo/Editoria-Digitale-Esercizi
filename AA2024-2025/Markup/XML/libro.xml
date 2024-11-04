@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bookstore>
+    <book>
+        <title>The Great Gatsby</title>
+        <author>F. Scott Fitzgerald</author>
+        <genre>Fiction</genre>
+        <price>10.99</price>
+        <publish_date>1925-04-10</publish_date>
+        <description>A story about the jazz age in the United States.</description>
+        
+        <chapter>
+            <title>Chapter 1</title>
+            <paragraph>
+                In my younger and more vulnerable years my father gave me some advice 
+                that I’ve been turning over in my mind ever since.
+            </paragraph>
+            <image src="gatsby_cover.jpg" alt="The Great Gatsby Cover"/>
+        </chapter>
+    </book>
+</bookstore>
