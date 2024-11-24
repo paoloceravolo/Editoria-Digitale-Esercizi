@@ -1,4 +1,4 @@
-### **Esercizio:  Antologia di William Shakespeare **
+### Esercizio:  Antologia di William Shakespeare
 
 #### **Scenario**
 
